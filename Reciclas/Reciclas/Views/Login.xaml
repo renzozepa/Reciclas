@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reciclas.Views.Login"
+             Visual="Material" 
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView >
+        <FlexLayout Margin="10" Direction="Column" AlignContent="Center" JustifyContent="SpaceAround">
+            <Frame BorderColor="OrangeRed" BackgroundColor="White" HorizontalOptions="Center">
+                <StackLayout>
+                    <Label Text="Iniciar Sesión" FontSize="25" TextColor="Black" HorizontalOptions="Center"/>
+                    <Entry Placeholder="Introduce tu usuario" Keyboard="Email" x:Name="usuario" Text="{Binding Usuario}"/>
+                    <Entry Placeholder="Introduce tu contraseña" IsPassword="True" x:Name="contra" Text="{Binding Clave}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" >
+                            <Switch />
+                            <Label Text="Recordarme"  HorizontalOptions="StartAndExpand" FontSize="10" />
+                        </StackLayout>
+                        <Label Text="Olvidé mi contraseña?" TextColor="#0069c0" HorizontalOptions="EndAndExpand" FontSize="10"  />
+                    </StackLayout>
+                    <Button Text="Iniciar sesión" BackgroundColor="#E6002B" TextColor="White" Command="{Binding LoginCommand}" CornerRadius="8"/>
+                    <Button Text="Registrar" BackgroundColor="#E6002B" TextColor="White" Command="{Binding RegristrarCommand}" CornerRadius="8"/>
+                    <Button Text="Listar usuarios" BackgroundColor="#E6002B" IsVisible="True" Command="{Binding UsuariosCommand}" TextColor="White" CornerRadius="8"/>
+                </StackLayout>
+            </Frame>
+        </FlexLayout>
+    </ScrollView>
+    
+</ContentPage>

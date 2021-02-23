@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reciclas.Views.MiPerfil"             
+             Visual="Material">
+
+    <ScrollView>
+        <FlexLayout Margin="10" Direction="Column" AlignContent="Center" JustifyContent="SpaceAround">
+            <Frame Margin="5" BorderColor="White" BackgroundColor="White" HorizontalOptions="Center">
+                <StackLayout>
+                    <Label Text="Nombre: "/>
+                    <Entry Placeholder="Introduce tu nombre" x:Name="Nombre" Text="{Binding Nombre}"/>
+                    <Label Text="Usuario: "/>
+                    <Entry Placeholder="Escribe tu usuario" Keyboard="Email" x:Name="Usuario" Text="{Binding Usuario}"/>
+                    <Label Text="Contraseña: "/>
+                    <Entry Placeholder="Introduce tu dirección" x:Name="Direccion" Text="{Binding Direccion}"/>
+                    <Label Text="Latitud: "/>
+                    <Entry x:Name="Lat" Text="{Binding Latitud}"/>
+                    <Label Text="Longitud: "/>
+                    <Entry x:Name="Long" Text="{Binding Longitud}"/>
+                    <Label Text="ZipCode: "/>
+                    <Entry x:Name="ZipCode" Text="{Binding ZipCode}"/>
+                    <Label Text="Nro. Celular: "/>
+                    <Entry Placeholder="Introduce Nro. Celular" Keyboard="Telephone" x:Name="Celular" Text="{Binding Celular}"/>
+                    <Label Text="Perfil: "/>
+                    <Entry x:Name="Perfil" Text="{Binding Perfil}"/>
+                    <Label Text="Token: "/>
+                    <Entry x:Name="Token" Text="{Binding Token}"/>
+                    <Label Text="Alta: "/>
+                    <Label Text="{Binding Alta}"/>
+                    <Label Text="F.Alta: "/>
+                    <Label Text="{Binding Fecha_Alta}"/>
+                    <!--<combobox:SfComboBox x:Name="comboBox" DisplayMemberPath="DESCRIPCION" DataSource="{Binding PerfilCollection}">
+                        <combobox:SfComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="user.png" WidthRequest="12"/>
+                                    <Label Text="{Binding DESCRIPCION}" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </combobox:SfComboBox.ItemTemplate>
+                    </combobox:SfComboBox>-->
+                    <Button Text="Actualizar" BackgroundColor="#E6002B" Command="{Binding ActualizarCommand}" CornerRadius="8"></Button>
+                </StackLayout>
+            </Frame>
+        </FlexLayout>
+    </ScrollView>
+
+</ContentPage>

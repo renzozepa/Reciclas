@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+xmlns:numerictextbox="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reciclas.Views.Registrarme"
+             Visual="Material"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <FlexLayout Margin="10" Direction="Column" AlignContent="Center" JustifyContent="SpaceAround">
+            <Frame Margin="5" BorderColor="White" BackgroundColor="White" HorizontalOptions="Center">
+
+                <StackLayout>
+                    <Label Text="Nombre: "/>
+                    <Entry Placeholder="Introduce tu nombre" x:Name="Nombre" Text="{Binding Nombre}"/>
+                    <Label Text="Usuario: "/>
+                    <Entry Placeholder="Escribe tu usuario" Keyboard="Email" x:Name="Usuario" Text="{Binding Usuario}"/>
+                    <Label Text="Contraseña: "/>
+                    <Entry Placeholder="Elige una contraseña" IsPassword="True" x:Name="Contrasenia" Text="{Binding Clave}"/>
+                    <Label Text="Confirmar contraseña: "/>
+                    <Entry Placeholder="Confirmar contraseña" IsPassword="True" x:Name="Conf_Contrasenia" Text="{Binding Confirm_clave}"/>
+                    <Label Text="Dirección: "/>
+                    <Entry Placeholder="Introduce tu dirección" x:Name="Direccion" Text="{Binding Direccion}"/>
+                    <Label Text="Nro. Celular: "/>
+                    <Entry Placeholder="Introduce Nro. Celular" Keyboard="Telephone" x:Name="Celular" Text="{Binding Celular}"/>
+                    <Button Text="Agregar" BackgroundColor="#E6002B" Command="{Binding RegistrarmeCommand}"></Button>
+                    <Button Text="Regresar" BackgroundColor="#E6002B" Command="{Binding RegresarCommand}"></Button>
+                </StackLayout>
+
+            </Frame>
+        </FlexLayout>
+    </ScrollView>
+    
+</ContentPage>

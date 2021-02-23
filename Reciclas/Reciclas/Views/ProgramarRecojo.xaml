@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"             
+             xmlns:local="clr-namespace:Reciclas.ViewModels"
+             x:Class="Reciclas.Views.ProgramarRecojo"
+             Title="Programar recojo">
+    
+    <ContentPage.BindingContext>
+        <local:ProgramarRecojoViewModel/>
+    </ContentPage.BindingContext>
+
+    <maps:SfMaps x:Name="sfmap" ZoomLevel="15">
+        <maps:SfMaps.Layers>
+            <maps:ImageryLayer LayerType="OSM" BingMapStyle="Road"  GeoCoordinates="-12.0135681,-77.031494" >
+                
+                <maps:ImageryLayer.Sublayers>
+                    <maps:ShapeFileLayer ShapeType="PointIcon" MapPointIconSize="15" Points="{Binding SubLayer1}" >
+                        <maps:ShapeFileLayer.ShapeSettings>
+                            <maps:ShapeSetting ShapeFill="Blue" ShapeStroke="DarkBlue" 
+                                               ShapeStrokeThickness="8" />
+                        </maps:ShapeFileLayer.ShapeSettings>
+                    </maps:ShapeFileLayer>
+                </maps:ImageryLayer.Sublayers>
+                
+            </maps:ImageryLayer>
+        </maps:SfMaps.Layers>
+    </maps:SfMaps>
+</ContentPage>

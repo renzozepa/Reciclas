@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reciclas.Views.RegistrarRecojo"
+             Visual="Material"
+             Title="Registrar Recojo">
+    <ScrollView>
+        <FlexLayout Margin="10" Direction="Column" AlignContent="Center" JustifyContent="SpaceAround">
+            <Frame Margin="5" BorderColor="White" BackgroundColor="White" HorizontalOptions="Center">
+                <StackLayout>
+                    <Label Text="código: "/>
+                    <Entry Keyboard="Numeric" x:Name="Cod" Text="{Binding Codigo}"/>
+                    <Label Text="Descripcion: "/>
+                    <Entry Placeholder="Escribe descripción" x:Name="Descrip" Text="{Binding Descripcion}"/>
+                    <Label Text="Direccion de recojo: " />
+                    <Grid BackgroundColor="Transparent" RowDefinitions="*,*" ColumnDefinitions="2*,2*">
+                        <Entry Placeholder="Escribe tu direccion" Grid.Row="0" Grid.ColumnSpan="2" x:Name="Direcc" Text="{Binding Direccion}"/>
+                        <Button Grid.Row="1" Grid.Column="0" Text="Ubicación Actual" BackgroundColor="#E6002B" CornerRadius="8" ></Button>
+                        <Button Grid.Row="1" Grid.Column="1" Text="Ubicación registrada" BackgroundColor="#E6002B" CornerRadius="8" ></Button>
+                    </Grid>
+                    <Label Text="Horario disponible: "/>
+                    <Picker Title="Seleccionar Horario" 
+                            TitleColor="Red"
+                            ItemsSource="{Binding LstHorariodisponible}" 
+                            ItemDisplayBinding="{Binding DESCRIPCION}" 
+                            SelectedIndex="{Binding SelectedIndexHorario}"/>
+                    <Grid BackgroundColor="Transparent" RowDefinitions="*" ColumnDefinitions="2*,2*">
+                        <Button Grid.Column="0" Text="Guardar" BackgroundColor="#E6002B" CornerRadius="8" Command="{Binding GuardarRecojoCommand}" ></Button>
+                        <Button Grid.Column="1" Text="Agregar detalle" BackgroundColor="#E6002B" CornerRadius="8"></Button>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </FlexLayout>
+    </ScrollView>
+</ContentPage>
