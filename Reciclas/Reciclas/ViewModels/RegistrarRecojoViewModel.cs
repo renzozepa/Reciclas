@@ -72,7 +72,6 @@ namespace Reciclas.ViewModels
             get { return _lstHorariodisponible; }
             set
             {
-                //_myregion = _myregion ?? new List<string>();
                 if (_lstHorariodisponible != value)
                 {
                     _lstHorariodisponible = value;
@@ -168,7 +167,7 @@ namespace Reciclas.ViewModels
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

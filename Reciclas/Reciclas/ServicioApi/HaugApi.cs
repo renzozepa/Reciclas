@@ -121,7 +121,7 @@ namespace Reciclas.ServicioApi
                 string respuesta = response.RequestMessage.ToString();
                 string status_code = response.StatusCode.ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
