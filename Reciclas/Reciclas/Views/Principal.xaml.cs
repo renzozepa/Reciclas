@@ -28,7 +28,7 @@ namespace Reciclas.Views
                 new Menu{ Page= new RegistrarTipoResiduo(),MenuTitle="Registrar tipo residuo",  MenuDetail="Registrar tipo residuo",icon="actualizar.png",Id=3},
                 new Menu{ Page= new ProgramarRecojo(),MenuTitle="Programar recojo",  MenuDetail="Programar recojo",icon="settings.png",Id=4},
                 new Menu{ Page= new RegistrarRecojo(),MenuTitle="Registrar recojo",  MenuDetail="Registrar recojo",icon="settings.png",Id=5},
-                new Menu{ Page= new ListadoRecojo(),MenuTitle="Listar recojo",  MenuDetail="Listar recojo",icon="settings.png",Id=5},
+                new Menu{ Page= new Recojos(),MenuTitle="Listar recojo",  MenuDetail="Listar recojo",icon="settings.png",Id=5},
                 new Menu{ Page= new Login(),MenuTitle="Salir",  MenuDetail="Salir",icon="salir.png",Id=6},
             };
             ListMenu.ItemsSource = menu;

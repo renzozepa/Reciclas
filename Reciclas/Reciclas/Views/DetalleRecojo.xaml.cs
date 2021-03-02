@@ -15,13 +15,9 @@ namespace Reciclas.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetalleRecojo : ContentPage
 	{
-		public DetalleRecojo (ListarRecojoViewModel usuario)
+		public DetalleRecojo ()
 		{
-			InitializeComponent ();
-            if (usuario != null && usuario.Selectedusuario != null)
-            {
-                this.BindingContext = usuario;
-            }
+			InitializeComponent ();            
         }
 	}
 }

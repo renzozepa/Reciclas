@@ -15,7 +15,7 @@ namespace Reciclas.ViewModels
     {
         private Usuario _usuario;
 
-        public Usuario usuari
+        public Usuario Usuarios
         {
             get => _usuario;
             set
@@ -27,7 +27,7 @@ namespace Reciclas.ViewModels
 
         public DetalleRecojoViewModel(Usuario selectedUsuario)
         {
-            usuari = selectedUsuario;
+            Usuarios = selectedUsuario;
         }
     }
 }

@@ -203,6 +203,7 @@ namespace Reciclas.ViewModels
                             ID = 0,
                             DESCRIPCION = Descripcion,
                             ID_HORARIO = LstIdHorariodisponible[0].ID,
+                            HORARIO = horario_seleccionado.ToString(),
                             TOKEN_RECOJO = var_token,
                             ID_USUARIO = App.Id_Usuario,
                             FECHA_TRANSACCION = DateTime.Now.Date,

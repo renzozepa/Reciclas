@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace Reciclas.ViewModels
 {
-    public class ListarRecojoViewModel : BaseViewModel
+    public class ListarRecojoPenViewModel : BaseViewModel
     {
         private List<Recojo> recojoCollection;
         public List<Recojo> RecojoCollection
@@ -24,26 +24,29 @@ namespace Reciclas.ViewModels
         public List<Recojo> Selectedrecojo
         {
             get { return selectedrecojo; }
-            set { selectedrecojo = value;
-                  OnPropertyChanged(); }
+            set
+            {
+                selectedrecojo = value;
+                OnPropertyChanged();
+            }
         }
 
-        public ListarRecojoViewModel()
+        public ListarRecojoPenViewModel()
         {
-            ListarRecojo();
+            ListarRecojoPen();
         }
 
-        public void ListarRecojo()
+        public void ListarRecojoPen()
         {
             try
             {
                 var db = new SQLiteConnection(App.FilePath);
-                IEnumerable<Recojo> resultado = ConsultarRecojo(db);
+                IEnumerable<Recojo> resultado = ConsultarRecojoPen(db);
 
                 if (resultado.Count() > 0)
                 {
                     RecojoCollection = new List<Recojo>();
-                    RecojoCollection = (List<Recojo>)resultado;                    
+                    RecojoCollection = (List<Recojo>)resultado;
                 }
             }
             catch (Exception)
@@ -53,10 +56,11 @@ namespace Reciclas.ViewModels
 
         }
 
-        public static IEnumerable<Recojo> ConsultarRecojo(SQLiteConnection db)
+        public static IEnumerable<Recojo> ConsultarRecojoPen(SQLiteConnection db)
         {
             db.CreateTable<Recojo>();
             return db.Query<Recojo>("Select * From Recojo ");
         }
+
     }
 }

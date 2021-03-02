@@ -9,18 +9,18 @@
             <Image  WidthRequest="70" HeightRequest="70" Source="ic_por_sincronizado.png">
             </Image>
             <StackLayout Orientation="Vertical" Padding="15">
-                <Label x:Name="lblProductName" Text="{Binding selectedUsuario.NOMBRE}" FontSize="20" FontAttributes="Bold"/>
+                <Label x:Name="lblProductName" Text="{Binding NOMBRE}" FontSize="20" FontAttributes="Bold"/>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                     <Label Text="by" TextColor="Gray"/>
-                    <Label x:Name="lblCompany" Text="{Binding selectedUsuario.USUARIO}" TextColor="Gray"/>
+                    <Label x:Name="lblCompany" Text="{Binding USUARIO}" TextColor="Gray"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
-                    <Label x:Name="lblRatings" Text="{Binding selectedUsuario.DIRECCION}" TextColor="#3483eb"/>
+                    <Label x:Name="lblRatings" Text="{Binding DIRECCION}" TextColor="#3483eb"/>
                     <Label Text="/5"  TextColor="#3483eb"/>
                 </StackLayout>
-                <Label x:Name="lblPrice" Text="{Binding selectedUsuario.CELULAR}"  TextColor="#eb3443"/>
+                <Label x:Name="lblPrice" Text="{Binding CELULAR}"  TextColor="#eb3443"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

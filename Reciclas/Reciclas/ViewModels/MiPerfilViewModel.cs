@@ -123,7 +123,6 @@ namespace Reciclas.ViewModels
 
             var placemarks = await Geocoding.GetPlacemarksAsync(gps.Latitude, gps.Longitude);
             var placemark = placemarks?.FirstOrDefault();
-            string rpt = "Hola";
 
         }
         void actualizarZipCode()
