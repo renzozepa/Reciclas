@@ -15,8 +15,8 @@
                     <Label Text="Direccion de recojo: " />
                     <Grid BackgroundColor="Transparent" RowDefinitions="*,*" ColumnDefinitions="2*,2*">
                         <Entry Placeholder="Escribe tu direccion" Grid.Row="0" Grid.ColumnSpan="2" x:Name="Direcc" Text="{Binding Direccion}"/>
-                        <Button Grid.Row="1" Grid.Column="0" Text="Ubicación Actual" BackgroundColor="#E6002B" CornerRadius="8" ></Button>
-                        <Button Grid.Row="1" Grid.Column="1" Text="Ubicación registrada" BackgroundColor="#E6002B" CornerRadius="8" ></Button>
+                        <Button Grid.Row="1" Grid.Column="0" Text="Ubicación Actual" BackgroundColor="#E6002B" CornerRadius="8" Command="{Binding GetUbiActCommand}" ></Button>
+                        <Button Grid.Row="1" Grid.Column="1" Text="Ubicación registrada" BackgroundColor="#E6002B" CornerRadius="8" Command="{Binding GetUbiSavCommand}" ></Button>
                     </Grid>
                     <Label Text="Horario disponible: "/>
                     <Picker Title="Seleccionar Horario" 

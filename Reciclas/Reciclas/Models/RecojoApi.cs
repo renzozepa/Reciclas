@@ -13,5 +13,7 @@
         public string TOKEN_USUARIO { get; set; }
         public DateTime? FECHA_TRANSACCION { get; set; }
         public int? ID_ESTADO { get; set; }
+        public string LATITUD { get; set; }
+        public string LONGITUD { get; set; }
     }
 }

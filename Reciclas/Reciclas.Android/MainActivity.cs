@@ -33,10 +33,12 @@ namespace Reciclas.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);           
             Xamarin.FormsMaps.Init(this, savedInstanceState);
+            
 
             string filename = "Reciclas.db3";
             string foldername = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             string CompletePath = Path.Combine(foldername, filename);
+
 
             LoadApplication(new App(CompletePath));
         }

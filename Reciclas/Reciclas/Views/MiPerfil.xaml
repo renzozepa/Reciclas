@@ -15,7 +15,7 @@
                     <Entry Placeholder="Introduce tu nombre" x:Name="Nombre" Text="{Binding Nombre}"/>
                     <Label Text="Usuario: "/>
                     <Entry Placeholder="Escribe tu usuario" Keyboard="Email" x:Name="Usuario" Text="{Binding Usuario}"/>
-                    <Label Text="Contraseña: "/>
+                    <Label Text="Dirección: "/>
                     <Entry Placeholder="Introduce tu dirección" x:Name="Direccion" Text="{Binding Direccion}"/>
                     <Label Text="Latitud: "/>
                     <Entry x:Name="Lat" Text="{Binding Latitud}"/>

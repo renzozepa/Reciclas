@@ -19,6 +19,8 @@ namespace Reciclas.ViewModels
         public INavigation Navigation { get; set; }
         public ICommand MapsCommand { get; }
         public ICommand GuardarRecojoCommand { get; }
+        public ICommand GetUbiActCommand { get; }
+        public ICommand GetUbiSavCommand { get; }
 
         List<RecojoApi> LstRecojoApi = null;
 
@@ -36,6 +38,19 @@ namespace Reciclas.ViewModels
             set { _direccion = value; OnPropertyChanged(); }
         }
 
+        private string _latitud;
+        public string Latitud
+        {
+            get { return _latitud; }
+            set { _latitud = value; OnPropertyChanged(); }
+        }
+        private string _longitud;
+        public string Longitud
+        {
+            get { return _longitud; }
+            set { _longitud = value; OnPropertyChanged(); }
+        }
+
         private string _descripcion;
         public string Descripcion
         {
@@ -47,8 +62,9 @@ namespace Reciclas.ViewModels
         public string SelectedIndexHorario
         {
             get { return _selectedIndexHorario; }
-            set {
-                SetProperty(ref _selectedIndexHorario , value);
+            set
+            {
+                SetProperty(ref _selectedIndexHorario, value);
                 SelectedDescripcionHorario = _lstHorariodisponible[Convert.ToInt32(_selectedIndexHorario)].DESCRIPCION.ToString();
                 OnPropertyChanged();
             }
@@ -96,20 +112,26 @@ namespace Reciclas.ViewModels
         }
 
         public RegistrarRecojoViewModel(INavigation navigation)
-        {            
+        {
             Navigation = navigation;
             NroPedido();
             HorarioDisponible();
             MapsCommand = new Command(async () => await OpenLocation());
             GuardarRecojoCommand = new Command(() => GuardarRecojo());
+            GetUbiActCommand = new Command(async () => await OpenLocation());
+            GetUbiSavCommand = new Command(() => DireccionLogin());
         }
         async Task OpenLocation()
         {
-            await Map.OpenAsync(double.Parse("-12.0135681"), double.Parse("-77.031494"), new MapLaunchOptions
-            {
-                Name = "Casa",
-                NavigationMode = NavigationMode.Default
-            });
+            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+            var gps = await Geolocation.GetLocationAsync(request);
+            var placemarks = await Geocoding.GetPlacemarksAsync(gps.Latitude, gps.Longitude);
+            var placemark = placemarks?.FirstOrDefault();
+
+            Latitud = gps.Latitude.ToString();
+            Longitud = gps.Longitude.ToString();
+            Direccion = placemark.FeatureName.ToString();
+
         }
         public static IEnumerable<Recojo> ConsultarIdMaxRecojo(SQLiteConnection db)
         {
@@ -130,7 +152,7 @@ namespace Reciclas.ViewModels
                     foreach (Recojo itemRecojo in listll)
                     {
                         Codigo = itemRecojo.ID.ToString() == "0" ? "1" : itemRecojo.ID.ToString();
-                        
+
                     }
                 }
                 else
@@ -143,9 +165,34 @@ namespace Reciclas.ViewModels
 
                 throw;
             }
-            
+
         }
 
+        void DireccionLogin()
+        {
+            try
+            {
+                var db = new SQLiteConnection(App.FilePath);
+                IEnumerable<Usuario> resultado = ConsultarUsuarioLogeado(db);
+
+                if (resultado.Count() > 0)
+                {
+                    List<Usuario> listll = (List<Usuario>)resultado;
+
+                    foreach (Usuario itemLoginLocal in listll)
+                    {
+                        Latitud = itemLoginLocal.LATITUD.ToString();
+                        Longitud = itemLoginLocal.LONGITUD.ToString();
+                        Direccion = itemLoginLocal.DIRECCION.ToString();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         void HorarioDisponible()
         {
             try
@@ -163,6 +210,8 @@ namespace Reciclas.ViewModels
                         string var_zipcode = string.IsNullOrEmpty(itemLoginLocal.ZIPCODE.ToString()) ? "15096" : itemLoginLocal.ZIPCODE.ToString();
                         var t = Task.Run(async () => LstHorariodisponible = await HaugApi.Metodo.GetHorarioDisponible(var_zipcode));
                         t.Wait();
+                        Latitud = itemLoginLocal.LATITUD.ToString();
+                        Longitud = itemLoginLocal.LONGITUD.ToString();
                         Direccion = itemLoginLocal.DIRECCION.ToString();
                     }
                 }
@@ -171,7 +220,7 @@ namespace Reciclas.ViewModels
             {
                 throw;
             }
-                    
+
         }
 
         public static IEnumerable<Usuario> ConsultarUsuarioLogeado(SQLiteConnection db)
@@ -209,13 +258,15 @@ namespace Reciclas.ViewModels
                             FECHA_TRANSACCION = DateTime.Now.Date,
                             ID_ESTADO = 1,
                             ENVIADO = 0,
-                            FECHA_ENVIADO = DateTime.Now.Date
+                            FECHA_ENVIADO = DateTime.Now.Date,
+                            LATITUD = Latitud,
+                            LONGITUD = Longitud
                         };
                         using (SQLiteConnection conn = new SQLiteConnection(App.FilePath))
                         {
                             conn.CreateTable<Recojo>();
                             int rpt = conn.Insert(DatosAdd);
-                            GuardarRecojoWebApi(rpt, Descripcion, LstIdHorariodisponible[0].ID, Direccion, var_token);
+                            GuardarRecojoWebApi(rpt, Descripcion, LstIdHorariodisponible[0].ID, Direccion, var_token, Latitud, Longitud);
                             App.Current.MainPage.DisplayAlert("Agregar", "Datos registrados correctamente.", "Aceptar");
                             Limpiar();
                         }
@@ -230,7 +281,7 @@ namespace Reciclas.ViewModels
             }
         }
 
-        void GuardarRecojoWebApi(int recoj,string descripcion, int horario, string direccion, string token_recojo)
+        void GuardarRecojoWebApi(int recoj, string descripcion, int horario, string direccion, string token_recojo, string latitud, string longitud)
         {
             try
             {
@@ -242,7 +293,7 @@ namespace Reciclas.ViewModels
 
                     foreach (Usuario UsuarioItem in resultado)
                     {
-                        var t = Task.Run(async () => await HaugApi.Metodo.PostJsonHttpClientRecojo(descripcion,horario,direccion,token_recojo,UsuarioItem.TOKEN));
+                        var t = Task.Run(async () => await HaugApi.Metodo.PostJsonHttpClientRecojo(descripcion, horario, direccion, token_recojo, UsuarioItem.TOKEN, latitud, longitud));
                         t.Wait();
                     }
 

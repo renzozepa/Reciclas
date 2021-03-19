@@ -127,7 +127,7 @@ namespace Reciclas.ServicioApi
             }
         }
 
-        public async Task PostJsonHttpClientRecojo(string descripcion, int horario, string direccion, string token_recojo, string token_usuario)
+        public async Task PostJsonHttpClientRecojo(string descripcion, int horario, string direccion, string token_recojo, string token_usuario, string latitud,string longitud)
         {
             try
             {
@@ -140,7 +140,9 @@ namespace Reciclas.ServicioApi
                     TOKEN_RECOJO = token_recojo,
                     TOKEN_USUARIO = token_usuario,
                     FECHA_TRANSACCION = DateTime.Now.Date,
-                    ID_ESTADO = 1
+                    ID_ESTADO = 1,
+                    LATITUD = latitud,
+                    LONGITUD = longitud
                 };
 
                 var httpClient = new HttpClient();

@@ -17,7 +17,8 @@ namespace Reciclas.Tablas
         public int ID_ESTADO { get; set; }
         public int ENVIADO { get; set; }
         public DateTime FECHA_ENVIADO { get; set; }
-
+        public string LATITUD { get; set; }
+        public string LONGITUD { get; set; }
 
     }
 }
