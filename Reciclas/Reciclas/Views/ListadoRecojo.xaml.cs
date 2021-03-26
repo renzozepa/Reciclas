@@ -33,14 +33,17 @@ namespace Reciclas.Views
             {
                 if (lstRecojo.SelectedItem != null)
                 {
-                    Usuario usuarios = (Usuario)e.SelectedItem;
+                    Recojo recojo = (Recojo)e.SelectedItem;
                     
-                    if (usuarios != null)
+                    if (recojo != null)
                     {                        
-                        Navigation.PushAsync(new DetalleRecojo
-                            {
-                                BindingContext = e.SelectedItem as Usuario }
-                            );
+                        Navigation.PushAsync(new DetalleRecojo(Convert.ToDouble(recojo.LATITUD), 
+                                                               Convert.ToDouble(recojo.LONGITUD),
+                                                               recojo.DESCRIPCION,
+                                                               recojo.HORARIO)
+                        {
+                            BindingContext = e.SelectedItem as Recojo }
+                        );
                     }
                 }
             }

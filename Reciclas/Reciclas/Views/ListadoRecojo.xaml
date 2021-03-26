@@ -14,7 +14,10 @@
                   HasUnevenRows="True" 
                   CachingStrategy="RecycleElement"
                   ItemSelected="lstRecojo_ItemSelected" 
-                  SelectedItem="{Binding Selectedrecojo,Mode=TwoWay}">
+                  SelectedItem="{Binding Selectedrecojo,Mode=TwoWay}"
+                  IsPullToRefreshEnabled="True"
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                  RefreshCommand="{Binding ActualizarCommand}" >
 
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -59,7 +59,7 @@ namespace Reciclas.ViewModels
         public static IEnumerable<Recojo> ConsultarRecojoPen(SQLiteConnection db)
         {
             db.CreateTable<Recojo>();
-            return db.Query<Recojo>("Select * From Recojo ");
+            return db.Query<Recojo>("Select * From Recojo Where ID_ESTADO = 2");
         }
 
     }
