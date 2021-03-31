@@ -5,8 +5,10 @@
             x:Class="Reciclas.Views.Recojos"
             Title="Recojos">
 
-    <views:ListadoRecojoPendiente IconImageSource="ic_sincronizado.png" Title="Pendientes" />
-    <views:ListadoRecojo IconImageSource="ic_por_sincronizado.png" Title="Confirmado" />
+    
+    <views:ListadoRecojo IconImageSource="ic_por_sincronizado.png" Title="Registrado" />
+    <views:ListadoRecojoPendiente IconImageSource="ic_sincronizado.png" Title="Confirmado" />
+    <views:ListadoRecojoRecCan IconImageSource="ic_sincronizado.png" Title="Cerrado" /> 
     
     
 </TabbedPage>

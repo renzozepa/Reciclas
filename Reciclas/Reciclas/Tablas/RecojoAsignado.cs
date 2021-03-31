@@ -3,7 +3,7 @@
     using SQLite;
     using System;
 
-    public class Recojo
+    public class RecojoAsignado
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -19,6 +19,5 @@
         public DateTime FECHA_ENVIADO { get; set; }
         public string LATITUD { get; set; }
         public string LONGITUD { get; set; }
-
     }
 }
